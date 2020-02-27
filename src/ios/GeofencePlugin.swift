@@ -502,7 +502,13 @@ class GeoNotificationManager : NSObject, CLLocationManagerDelegate {
         let dateTime = Date()
         notification.fireDate = dateTime
         notification.soundName = UILocalNotificationDefaultSoundName
+
+        if let title = geo["notification"]["title"] where !title.isEmpty {
+            notification.alertTitle = title.stringValue
+        }
+
         notification.alertBody = geo["notification"]["text"].stringValue
+
         if let json = geo["notification"]["data"] as JSON? {
             notification.userInfo = ["geofence.notification.data": json.rawString(String.Encoding.utf8.rawValue, options: [])!]
         }
