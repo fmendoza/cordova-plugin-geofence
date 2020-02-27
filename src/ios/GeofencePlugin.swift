@@ -503,8 +503,8 @@ class GeoNotificationManager : NSObject, CLLocationManagerDelegate {
         notification.fireDate = dateTime
         notification.soundName = UILocalNotificationDefaultSoundName
 
-        if let title = geo["notification"]["title"] where !title.isEmpty {
-            notification.alertTitle = title.stringValue
+        if let title = geo["notification"]["title"].stringValue as String? {
+            notification.alertTitle = title
         }
 
         notification.alertBody = geo["notification"]["text"].stringValue
