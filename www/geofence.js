@@ -37,6 +37,17 @@ module.exports = {
   initialize: function (success, error) {
     return execPromise(success, error, "GeofencePlugin", "initialize", []);
   },
+
+  /**  
+   *
+   * @name deviceReady
+   * @return {Void}
+   */
+
+  deviceReady: function () {
+    return execPromise(null, null, "GeofencePlugin", "deviceReady", []);
+  },
+
   /**
    * Adding new geofence to monitor.
    * Geofence could override the previously one with the same id.
@@ -252,10 +263,3 @@ function coerceBoolean(name, value) {
 function isInt(n) {
   return Number(n) === n && n % 1 === 0;
 }
-
-// Called after "deviceready" event
-channel.deviceready.subscribe(function () {
-  // Device is ready now, the listeners are registered
-  // and all queued events can be executed.
-  exec(null, null, "GeofencePlugin", "deviceReady", []);
-});
